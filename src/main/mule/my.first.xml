@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="c714e658-d75b-4e56-a83d-b989b58109ba" >
+		<http:request-connection host="jsonplaceholder.typicode.com"/>
+	</http:request-config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="64ff6e32-22e2-4582-83e4-024636b3b2a3" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="my.firstFlow" doc:id="03c22428-b46a-486e-9a21-c4125dc3efce" >
+		<http:listener doc:name="Listener" doc:id="d71f501f-5600-48e1-be64-28f0c73f2b1f" config-ref="HTTP_Listener_config" path="/user"/>
+		<http:request method="GET" doc:name="Request" doc:id="52a38f47-6755-4cc0-b975-60f44363b1d0" config-ref="HTTP_Request_configuration" path="/users"/>
+	</flow>
+</mule>
